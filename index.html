@@ -1,225 +1,192 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rekod Data Peserta</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .form-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333333;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #555555;
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        label {
-            font-weight: bold;
-            color: #555555;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        input[type="text"],
-        input[type="tel"],
-        input[type="number"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            resize: none;
-            height: 80px;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .success-message {
-            text-align: center;
-            color: green;
-            margin-top: 15px;
-            display: none;
-        }
-
-        .error-message {
-            text-align: center;
-            color: red;
-            margin-top: 15px;
-            display: none;
-        }
-
-        .check-data-section {
-            margin-bottom: 20px;
-        }
-
-        .check-data-section input {
-            margin-right: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekod Data Peserta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+    input, select {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      color: green;
+    }
+    #searchResult {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <!-- Formulir untuk rekod data -->
+    <h1>Rekod Data Peserta</h1>
+    <form id="dataForm">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required>
 
-    <div class="form-container">
-        <!-- Tajuk Utama -->
-        <h1>Rekod Data Peserta</h1>
+      <label for="noTelefon">No Telefon:</label>
+      <input type="text" id="noTelefon" name="noTelefon" required>
 
-        <!-- Bahagian Semak Data -->
-        <div class="check-data-section">
-            <h2>Semak Data Anda</h2>
-            <label for="searchNama">Masukkan Nama Anda:</label>
-            <input type="text" id="searchNama" placeholder="Cari nama anda...">
-            <button id="checkDataButton">Semak Data</button>
-            <div id="dataStatus" style="margin-top: 10px; text-align: center;"></div>
-        </div>
+      <label for="alamat">Alamat:</label>
+      <input type="text" id="alamat" name="alamat" required>
 
-        <!-- Borang Isian Data -->
-        <form id="dataForm">
-            <label for="nama">Nama:</label>
-            <input type="text" id="nama" name="nama" required>
+      <label for="negeri">Negeri:</label>
+      <select id="negeri" name="negeri" required>
+        <option value="">-- Pilih Negeri --</option>
+        <option value="Johor">Johor</option>
+        <option value="Kedah">Kedah</option>
+        <option value="Kelantan">Kelantan</option>
+        <option value="Melaka">Melaka</option>
+        <option value="Negeri Sembilan">Negeri Sembilan</option>
+        <option value="Pahang">Pahang</option>
+        <option value="Perak">Perak</option>
+        <option value="Perlis">Perlis</option>
+        <option value="Pulau Pinang">Pulau Pinang</option>
+        <option value="Sabah">Sabah</option>
+        <option value="Sarawak">Sarawak</option>
+        <option value="Selangor">Selangor</option>
+        <option value="Terengganu">Terengganu</option>
+        <option value="WP Kuala Lumpur">WP Kuala Lumpur</option>
+        <option value="WP Labuan">WP Labuan</option>
+        <option value="WP Putrajaya">WP Putrajaya</option>
+      </select>
 
-            <label for="noTelefon">No Telefon:</label>
-            <input type="tel" id="noTelefon" name="noTelefon" required>
+      <label for="umur">Umur:</label>
+      <input type="number" id="umur" name="umur" required>
 
-            <label for="alamat">Alamat:</label>
-            <textarea id="alamat" name="alamat" required></textarea>
+      <label for="pekerjaan">Pekerjaan:</label>
+      <input type="text" id="pekerjaan" name="pekerjaan" required>
 
-            <label for="negeri">Negeri:</label>
-            <input type="text" id="negeri" name="negeri" required>
+      <button type="submit">Hantar</button>
+    </form>
+    <div class="message" id="message"></div>
 
-            <label for="umur">Umur:</label>
-            <input type="number" id="umur" name="umur" required>
+    <!-- Formulir untuk semak data -->
+    <h2>Semak Data Anda</h2>
+    <form id="searchForm">
+      <label for="searchNoTelefon">No Telefon:</label>
+      <input type="text" id="searchNoTelefon" name="searchNoTelefon" required>
+      <button type="submit">Cari</button>
+    </form>
+    <div id="searchResult"></div>
+  </div>
 
-            <label for="pekerjaan">Pekerjaan:</label>
-            <input type="text" id="pekerjaan" name="pekerjaan" required>
+  <script>
+    // Hantar data ke Google Sheets
+    document.getElementById('dataForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-            <button type="submit">Hantar</button>
+      const formData = {
+        nama: document.getElementById('nama').value,
+        noTelefon: document.getElementById('noTelefon').value,
+        alamat: document.getElementById('alamat').value,
+        negeri: document.getElementById('negeri').value,
+        umur: document.getElementById('umur').value,
+        pekerjaan: document.getElementById('pekerjaan').value,
+      };
 
-            <div class="success-message" id="successMessage">Data berjaya dihantar!</div>
-            <div class="error-message" id="errorMessage">Gagal menghantar data.</div>
-        </form>
-    </div>
-
-    <script>
-        const form = document.getElementById('dataForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const checkDataButton = document.getElementById('checkDataButton');
-        const searchNama = document.getElementById('searchNama');
-        const dataStatus = document.getElementById('dataStatus');
-
-        // Fungsi untuk semak data
-        checkDataButton.addEventListener('click', function() {
-            const namaPeserta = searchNama.value.trim();
-
-            if (!namaPeserta) {
-                dataStatus.textContent = "Sila masukkan nama untuk menyemak.";
-                dataStatus.style.color = "red";
-                return;
-            }
-
-            // Hantar permintaan ke Google Apps Script untuk menyemak data
-            fetch(`https://script.google.com/macros/s/AKfycbzajnck7XRStEDzCviE9bKVZdZckaNDN-0bRtrLMm_D2M-5Wtqr-eur40K2kxx9Hc7w/exec?nama=${encodeURIComponent(namaPeserta)}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.exists) {
-                        dataStatus.textContent = `Data untuk ${namaPeserta} telah wujud.`;
-                        dataStatus.style.color = "green";
-                    } else {
-                        dataStatus.textContent = `Data untuk ${namaPeserta} tidak dijumpai.`;
-                        dataStatus.style.color = "red";
-                    }
-                })
-                .catch(error => {
-                    console.error('Ralat:', error);
-                    dataStatus.textContent = "Gagal menyemak data.";
-                    dataStatus.style.color = "red";
-                });
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbw3GWoDXMo98AQxp3oX78ztKp5R8XNOBsMHKpQUcsSsM5p1WZkJ3Wb0_I8crvtTyDo/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
         });
 
-        // Fungsi untuk hantar data ke Google Sheets
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+        if (response.ok) {
+          document.getElementById('message').textContent = 'Data telah direkodkan!';
+          document.getElementById('dataForm').reset();
+        } else {
+          document.getElementById('message').textContent = 'Gagal menyimpan data.';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('message').textContent = 'Ralat semasa menyimpan data.';
+      }
+    });
 
-            const nama = form.nama.value;
-            const noTelefon = form.noTelefon.value;
-            const alamat = form.alamat.value;
-            const negeri = form.negeri.value;
-            const umur = form.umur.value;
-            const pekerjaan = form.pekerjaan.value;
+    // Semak data peserta
+    document.getElementById('searchForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-            fetch('https://script.google.com/macros/s/AKfycbzajnck7XRStEDzCviE9bKVZdZckaNDN-0bRtrLMm_D2M-5Wtqr-eur40K2kxx9Hc7w/exec', {
-                method: 'POST',
-                body: JSON.stringify({
-                    nama: nama,
-                    noTelefon: noTelefon,
-                    alamat: alamat,
-                    negeri: negeri,
-                    umur: umur,
-                    pekerjaan: pekerjaan
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                successMessage.style.display = 'block';
-                errorMessage.style.display = 'none';
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Ralat:', error);
-                errorMessage.style.display = 'block';
-                successMessage.style.display = 'none';
-            });
-        });
-    </script>
+      const noTelefon = document.getElementById('searchNoTelefon').value;
 
+      try {
+        const response = await fetch(`https://script.google.com/macros/s/AKfycbw3GWoDXMo98AQxp3oX78ztKp5R8XNOBsMHKpQUcsSsM5p1WZkJ3Wb0_I8crvtTyDo/exec?noTelefon=${noTelefon}`);
+        const result = await response.json();
+
+        const searchResult = document.getElementById('searchResult');
+        if (result.status === 'found') {
+          searchResult.innerHTML = `
+            <p>Nama: ${result.nama}</p>
+            <p>No Telefon: ${result.noTelefon}</p>
+            <p>Alamat: ${result.alamat}</p>
+            <p>Negeri: ${result.negeri}</p>
+            <p>Umur: ${result.umur}</p>
+            <p>Pekerjaan: ${result.pekerjaan}</p>
+          `;
+        } else {
+          searchResult.textContent = 'Data tidak ditemui.';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('searchResult').textContent = 'Ralat semasa mencari data.';
+      }
+    });
+  </script>
 </body>
 </html>
